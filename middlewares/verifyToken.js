@@ -1,7 +1,6 @@
 const jwt = require ("jsonwebtoken");
 require ("dotenv").config();
 const secret = process.env.JWT_SECRET;
-// const decodeSecret = Buffer.from(process.env.JWT_SECRET, "base64").toString("utf-8");
 
 // generación de middleware que va a verificar el jwt
 
