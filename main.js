@@ -10,10 +10,10 @@ const app = express();
 // creación de puerto
 const port = 3000;
 
-// importa la clase userRoute
+// importa la clases
 const userRoute = require("./routes/userRoute");
 const clientRoute = require("./routes/clientRoute");
-// const commentRoute = require("./routes/commentRoute");
+const saleRoute = require("./routes/saleRoute");
 
 app.use(express.json());
 app.use(cors({origin: '*'}));
@@ -21,6 +21,7 @@ app.use(cors({origin: '*'}));
 // ruta para acceder a la información de la BD
 app.use('/api/users', userRoute);
 app.use('/api/clients', clientRoute);
+app.use('/api/sales', saleRoute);
 
 dbConnection();
 
