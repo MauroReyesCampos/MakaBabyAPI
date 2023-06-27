@@ -11,8 +11,7 @@ exports.createSale =  (req, res) => {
     const newSale = new saleModel({
         saleId,
         client,
-        date,
-        total
+        date
     });
     newSale
     .save()
@@ -22,12 +21,11 @@ exports.createSale =  (req, res) => {
 
 exports.updateSale = (req, res) => {
     const {id}= req.params;
-    const {saleId, client, date, total} = req.body;
+    const {saleId, client, date} = req.body;
     const updateData = {
         saleId,
         client,
-        date,
-        total
+        date
     };
     saleModel.findByIdAndUpdate( id, updateData, {new:true})
     .then(sale => {

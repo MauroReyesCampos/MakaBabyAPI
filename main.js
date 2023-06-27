@@ -14,6 +14,7 @@ const port = 3000;
 const userRoute = require("./routes/userRoute");
 const clientRoute = require("./routes/clientRoute");
 const saleRoute = require("./routes/saleRoute");
+const detailRoute = require("./routes/detailRoute");
 
 app.use(express.json());
 app.use(cors({origin: '*'}));
@@ -22,6 +23,7 @@ app.use(cors({origin: '*'}));
 app.use('/api/users', userRoute);
 app.use('/api/clients', clientRoute);
 app.use('/api/sales', saleRoute);
+app.use('/api/details', detailRoute);
 
 dbConnection();
 
