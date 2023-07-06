@@ -8,26 +8,34 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.createUser =  (req, res) => {
-    const {firstName, lastName, email, password, role} = req.body;
+    const {firstName, lastName, email, password, role, registerDate} = req.body;
     const saltRounds = 10;
-    bcrypt.hash(password, saltRounds, function(err, hash){
-        if(err){
-            res.status(500).json({error:err.message});
-        }
-        else{
-            const newUser = new userModel({
-                firstName,
-                lastName,
-                email,
-                password:hash,
-                role
+    userModel.findOne({email})
+    .then ((user) => {
+        if(user){
+            return res.status(409).json({error: "User already exists."});
+        } else {
+            bcrypt.hash(password, saltRounds, function(err, hash){
+                if(err){
+                    res.status(500).json({error:err.message});
+                }
+                else{
+                    const newUser = new userModel({
+                        firstName,
+                        lastName,
+                        email,
+                        password:hash,
+                        role,
+                        registerDate
+                    });
+                    newUser
+                    .save()
+                    .then(() => res.status(201).json({success:"User created"}))
+                    .catch(err => res.status(500).json({error:err.message}));
+                }
             });
-            newUser
-            .save()
-            .then(() => res.status(201).json({success:"User created"}))
-            .catch(err => res.status(500).json({error:err.message}));
         }
-    });
+    })
 };
 
 exports.updateUser = (req, res) => {
