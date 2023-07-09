@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const clientSchema = new mongoose.Schema({
-    name: {type: String, required:  true},
-    personalId: {type: String, required: true},
-    adress1: {type: String, required: true},
+    name: {type: String, required: true},
+    personalId: {type: String},
+    adress1: {type: String},
     adress2: {type: String},
-    neighborhood: {type: String, required: true},
+    neighborhood: {type: String},
     city: {type: String, required: true},
     state: {type: String, required: true},
     phone: {type: String, required: true},

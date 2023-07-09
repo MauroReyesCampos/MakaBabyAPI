@@ -9,9 +9,9 @@ const {verifyToken} = require("../middlewares/verifyToken");
 //importar el userController
 const userController = require("../controllers/userController");
 
-router.get('/', userController.getAllUsers);
+router.get('/', verifyToken, userController.getAllUsers);
 
-router.post('/create', userController.createUser);
+router.post('/create', verifyToken, userController.createUser);
 
 router.put('/update/:id', verifyToken, userController.updateUser);
 

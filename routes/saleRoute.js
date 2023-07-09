@@ -7,9 +7,9 @@ const {verifyToken} = require("../middlewares/verifyToken");
 //importar el Controller
 const saleController = require("../controllers/saleController");
 
-router.get('/', saleController.getAllSales);
+router.get('/', verifyToken, saleController.getAllSales);
 
-router.post('/create', saleController.createSale);
+router.post('/create', verifyToken, saleController.createSale);
 
 router.put('/update/:id', verifyToken, saleController.updateSale);
 
